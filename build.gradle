@@ -38,6 +38,15 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.data:spring-data-rest-hal-explorer'
 
+	/* 스프링부트 3.X 대 버전 - 이거 하고 맨 아래 */
+	implementation "com.querydsl:querydsl-core"
+	implementation "com.querydsl:querydsl-collections"
+	/* 자카르타는 3버전이상부터 붙음 회사가 인수됨 그게아니면 자바2버전 */
+	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+	annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
+	annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+	annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+	////////////////////////////////////////////////////////////////////
 
 
 	compileOnly 'org.projectlombok:lombok'
@@ -50,3 +59,21 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+////////////// 스프링 3버전용 - queryDSL 설정부 //////////////////
+def generated = 'src/main/generated'
+def querydslSrcDir = 'src/main/generated'
+clean {
+	delete file(querydslSrcDir)
+}
+tasks.withType(JavaCompile) {
+	options.generatedSourceOutputDirectory = file(querydslSrcDir)
+}
+
+
+/*
+1. Querydsl 관련된거 다 추가 했으면 코끼리 클릭하고
+2. External Libraries 가보면 com.quertdsl 관련된거 있는지 확인
+3. 화면 우측의 gradle 버튼 > tasks > build > clean 하고
+4. gradle 버튼 > otger > comapilejava
+
+* */
