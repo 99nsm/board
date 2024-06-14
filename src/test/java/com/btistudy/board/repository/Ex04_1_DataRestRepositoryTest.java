@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
                          *쉽게 말하면 내가 컨트롤러 테스트를 하고 싶을때 실제 서버에 구현된 어플리케이션을 올리지 않고 테스트용 
                           시뮬레이션을 돌려서 MVC 가 되도록 도와주는 클래스
 
-        2) @DataJapTest - JPA 레포지토리 테스트 할때 사용
+        2) @DataJpaTest - JPA 레포지토리 테스트 할때 사용
                             @Entity 가 있는 엔티티 클래스들을 스캔해서 테스트를 위한 환경을 설정함
                             @Component 같은 Bean들은 스캔되지 않음
                             
